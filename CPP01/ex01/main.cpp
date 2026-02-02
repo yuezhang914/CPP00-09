@@ -3,22 +3,21 @@
 
 int main(void)
 {
-    int count = 5;
-    Zombie* zombieArray = zombieHorde(count, "HordeZombie");
+	int count = 5;
+	Zombie *zombieArray = zombieHorde(count, "HordeZombie");
 
-    if (zombieArray == 0)
-    {
-        std::cout << "count is not valid" << std::endl;
-        return 0;
-    }
+	if (zombieArray == 0)
+	{
+		std::cout << "count is not valid" << std::endl;
+		return 0;
+	}
 
-    int index = 0;
-    while (index < count)
-    {
-        zombieArray[index].announce();
-        index++;
-    }
+	// 改回（for 版）：逐个打印每个僵尸的 announce
+	for (int index = 0; index < count; index++)
+	{
+		zombieArray[index].announce();
+	}
 
-    delete[] zombieArray;
-    return 0;
+	delete[] zombieArray;
+	return 0;
 }

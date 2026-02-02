@@ -37,17 +37,17 @@ void Harl::complain(const std::string &level)
     table[3].levelText = "ERROR";
     table[3].action = &Harl::error;
 
-    int index = 0;
-    while (index < 4)
+	// 改回（for 版）：在 4 个等级里查找匹配项
+for (int index = 0; index < 4; index++)
+{
+    if (level == table[index].levelText)
     {
-        if (level == table[index].levelText)
-        {
-            // 调用成员函数指针：需要绑定到当前对象 this
-            (this->*(table[index].action))();
-            return;
-        }
-        index++;
+        // 调用“成员函数指针”：必须绑到当前对象 this
+        (this->*(table[index].action))();
+        return; // 找到就结束
     }
+}
+
 }
 
 void Harl::debug(void)
